@@ -1,0 +1,60 @@
+<%- include('partials/header.ejs') %> 
+<br>
+<% let rows=Math.floor((city.length)/4); %>
+<% let rem_col=city.length%4; %>
+<% let rem_empty=4-rem_col; %>
+<% let ptr=0; %>
+<% if(city.length>3){ %> 
+<% for(let i=0;i<rows;i++) { %> 
+    <div class="row">
+       <% for(let j=0;j<4;j++) { %>
+        <div class="col-sm">
+            <div class="card">
+              <div class="card-body">
+                <table>
+                    <tr>
+                        <td><h1 class="card-title"><%= city[ptr].temp %> </h1></td>
+                        <td><img src=<%="http://openweathermap.org/img/wn/"+city[ptr].code+"@2x.png"%>></img></td>
+                    </tr>
+                </table>
+                <p class="card-text"><%= city[ptr].desc %> </p>
+                <p class="card-text"><%= city[ptr].name %> </p>
+                <form action="" method="post">
+                  <button type="submit" class="btn btn-danger" name="function" value="<%=city[ptr].name%>">delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <% ptr++; %> 
+       <% } %>  
+    </div>
+    <br>
+<% } %>   
+<% } %>   
+<div class="row">
+    <% for(let j=0;j<rem_col;j++) { %>
+        <div class="col-sm">
+            <div class="card">
+              <div class="card-body">
+                <table>
+                    <tr>
+                        <td><h1 class="card-title"><%= city[ptr].temp %> </h1></td>
+                        <td><img src=<%="http://openweathermap.org/img/wn/"+city[ptr].code+"@2x.png"%>></img></td>
+                    </tr>
+                </table>
+                <p class="card-text"><%= city[ptr].desc %> </p>
+                <p class="card-text"><%= city[ptr].name %> </p>
+                <form action="" method="post">
+                  <button type="submit" class="btn btn-danger" name="function" value="<%=city[ptr].name%>">delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <% ptr++; %> 
+       <% } %>
+       <% for(let i = 0; i < rem_empty; i++) { %> 
+            <div class="col-sm"></div>
+        <%} %>
+</div>
+<br>
+<%- include('partials/footer.ejs') %> 
